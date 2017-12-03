@@ -1,0 +1,35 @@
+<div class="topnav" id="myTopnav">
+  <a href="#home" class="active">Home</a>
+  <a href="#news">News</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a>
+  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+
+<div style="padding-left:16px">
+  
+</div>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+
+
+
+
+<div class="row columns">
+  <button (click)="login()" *ngIf="!(user | async)?.uid">Signup with google account</button>
+  <button (click)="logout()" *ngIf="(user | async)?.uid">Logout</button>
+
+  <input type="text" id="message" *ngIf="(user | async)?.uid" placeholder="creat new hackathon?" (keyup.enter)="Send($event.target.value)" [(value)]="msgVal" />
+  <div id="details-container">
+      <p *ngFor="let item of items | async"><img src="../assets/images/pin.svg">{{item.message}}</p>
+  </div>
+</div>
